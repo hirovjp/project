@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table ="User";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,4 +29,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function cart()
+    {
+        return $this->hasOne('App\cart', 'user_id', 'id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\role', 'role_id', 'id');
+    }
 }

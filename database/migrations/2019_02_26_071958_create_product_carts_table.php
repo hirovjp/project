@@ -15,7 +15,14 @@ class CreateProductCartsTable extends Migration
     {
         Schema::create('product_carts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cart_id');
+            $table->integer('product_id');
+            $table->integer('quantily');
             $table->timestamps();
+            
+            // Foreign key
+            // $table->foreign('cart_id')->references('id')->on('cart');
+            // $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
         });
     }
 
