@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class cart extends Model
 {
-    protected $table = "cart";
+    protected $table = "carts";
 
-    public function User()
+    public function user()
     {
-    	return $this->belongsTo('App\User', 'foreign_key');
+    	return $this->hasOne('App\User', 'user_id', 'id');
     }
 
-    public function product_cart()
+    public function product()
     {
-    	return $this->hasMany('App\product_cart', 'cart_id', 'id');
+    	return $this->belongsToMany('App\Product', 'product_carts', 'cart_id', 'product_id');
     }
 }

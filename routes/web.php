@@ -26,3 +26,22 @@ Route::get('logout', 'LoginController@logout');
 Route::post('load', 'LoginController@load');
 
 Route::post('register', 'LoginController@register');
+
+Route::prefix('page')->group(function () {
+	Route::get('/', [
+		'as' => 'trangchu', /*Đặt tên cho route*/
+		'uses' => 'PageController@index', /*Đường dẫn cho route*/
+	]);
+	Route::get('/list', [
+		'as' => 'list',
+		'uses' => 'PageController@list',
+	]);
+	Route::get('product/{id}', [
+		'as' => 'sanpham',
+		'uses' => 'PageController@show',
+	]);
+	Route::login('login', [
+		'as' => 'dangnhap',
+		'uses' => 'PageController@login',
+	]);
+});
