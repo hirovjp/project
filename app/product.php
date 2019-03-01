@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
-    protected $table = "product";
+    protected $table = "products";
 
-    public function product_category()
+    public function cart()
     {
-    	return $this->hasMany('App\product_category', 'product_id', 'id');
+    	return $this->belongsToMany('App\Product', 'carts', 'product_id', 'cart_id');
     }
 
-    public function product_cart()
+    public function category()
     {
-    	return $this->hasMany('App\product_cart', 'product_id', 'id');
+    	return $this->belongsToMany('App\Category', 'categories', 'category_id', 'product_id');
     }
 
     public function product_order()
     {
-    	return $this->hasMany('App\product_order', 'product_id', 'id');
+    	return $this->belongsTo('App\ProductOrder', 'product_id', 'id');
     }
 }
