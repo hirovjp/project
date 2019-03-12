@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class cart extends Model
+class Cart extends Model
 {
     protected $table = "carts";
 
     public function user()
     {
-    	return $this->hasOne('App\User', 'user_id', 'id');
+    	return $this->hasOne('App\User');
     }
 
     public function product()

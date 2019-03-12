@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class product extends Model
+class Product extends Model
 {
     protected $table = "products";
 
@@ -20,6 +20,6 @@ class product extends Model
 
     public function product_order()
     {
-    	return $this->belongsTo('App\ProductOrder', 'product_id', 'id');
+    	return $this->hasMany('App\ProductOrder', 'product_id', 'id');
     }
 }

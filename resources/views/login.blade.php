@@ -1,5 +1,5 @@
 
-	<form method="post" action="{{ URL::to('load') }}">
+	<form method="post" action="{{ route('load') }}">
 		<caption>Đăng nhập</caption>
 		@csrf
 		Nhập Email:
@@ -9,28 +9,29 @@
 		<input type="submit" name="">
 	</form>
 	<br>
-	<form name="register" onsubmit="return(checkSubmit())" method="post" action="{{ URL::to('register') }}">
+	<form name="register" method="post" action="{{ route('register') }}">
 		@csrf
 		<caption>Tạo tài khoản</caption>
 		Nhập email:
 		<input type="email" name="email" placeholder="nhập email">
 		Nhập password:
-		<input type="password" name="password_1" placeholder="nhập password">
+		<input type="password" name="password" placeholder="nhập password">
 		Nhập lại password:
-		<input type="password" name="password_2">
+		<input type="password" name="password_confirmation">
 		<input type="submit" name="submit" value="Register">
 	</form>
 	<div id="thongBao"></div>
 
-	<script type="text/javascript">
-		function checkSubmit () {
-			var pass_1 = parseInt(document.forms['register']['password_1'].value);
-			var pass_2 = parseInt(document.forms['register']['password_2'].value);
-			if (pass_1 !== pass_2) {
-				document.getElementById("thongBao").innerHTML = "Mật khẩu nhập lại chưa khớp";
-				return false;
-			} else {
-				return true;
-			}
-		}
-	</script>
+	@if (count($errors->all()))
+		@foreach ($errors->all() as $error)
+			{{ $error }}
+		@endforeach
+	@endif
+
+	@if (Session::has('error'))
+		{{ Session::get('error') }}
+	@endif
+
+	@if (Session::has('success'))
+		{{ Session::get('success') }}
+	@endif

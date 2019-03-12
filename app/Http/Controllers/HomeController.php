@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\product;
-use App\product_order;
 
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
@@ -18,11 +25,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function data()
-    {
-        $data = product::find(1)->category()->toArray();
-        var_dump($data);
-    }
-
 }
