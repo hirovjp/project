@@ -39,9 +39,10 @@ Route::prefix('page')->group(function () {
 		'as' => 'sanpham',
 		'uses' => 'PageController@show',
 	]);
-	Route::get('/search', [ 'as' => 'timkiem', 'uses' => 'PageController@Search' ]);
+	Route::get('search', [ 'as' => 'timkiem', 'uses' => 'PageController@Search' ]);
+	
 	Route::get('addcart', [ 'as' => 'addCart', 'uses' => 'PageController@AddCart' ]);
-	Route::get('showcart', [ 'as' => 'showCart', 'uses' => 'PageController@ShowCart' ]);
+	Route::get('showcart', [ 'as' => 'showCart', 'uses' => 'PageController@ShowCart' ])->middleware('check');
 
 	// Login
 	Route::get('login', 'LoginController@login')->name('login');

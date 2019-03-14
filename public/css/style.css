@@ -1,0 +1,10 @@
+*{}
+.search_form input{
+	color: black;
+}
+
+.image-index {
+	width: auto;
+	height: 250px;
+}
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
+use App\Category;
 use App\Role;
 use App\User;
 
@@ -13,7 +14,7 @@ class LoginController extends Controller
     public function login()
     {
         if (!Auth::check()) {
-            return view('login');
+            return view('page.login')->with(['menu' => Category::all()]);
         } else {
             return redirect()->route('trangchu');
         }
