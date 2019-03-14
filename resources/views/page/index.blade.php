@@ -13,8 +13,10 @@
 			{{ Auth::user()->name }} | <a href="{{ route('logout') }}">Đăng xuất</a>
 		@endif
 		<a href=""><i class="fas fa-shopping-cart cart">
-			@if (App\ProductCart::where('cart_id', '=', Auth::user()->cart->id)->count() !== 0 )
-				{{ App\ProductCart::where('cart_id', '=', Auth::user()->cart->id)->count() }}
+			@if (Auth::check())
+				@if (App\ProductCart::where('cart_id', '=', Auth::user()->cart->id)->count() !== 0)
+					{{ App\ProductCart::where('cart_id', '=', Auth::user()->cart->id)->count() }}
+				@endif
 			@endif
 		</i></a>
 		<br>
